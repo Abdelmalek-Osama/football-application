@@ -14,7 +14,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Football Transfer Tracker',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Color(0xFF0A2647),
+        scaffoldBackgroundColor: Color(0xFF144272),
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: Color(0xFF0A2647),
+          secondary: Color(0xFF2C74B3),
+        ),
+        appBarTheme: AppBarTheme(backgroundColor: Color(0xFF205295)),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF0A2647)),
+        ),
       ),
       home: LoginScreen(),
     );

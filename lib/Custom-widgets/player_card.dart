@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/firestore_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class PlayerCard extends StatefulWidget {
   final String name;
@@ -22,6 +23,7 @@ class PlayerCard extends StatefulWidget {
 class _PlayerCardState extends State<PlayerCard> {
   final FirestoreService firestoreService = FirestoreService();
   bool isFavorited = false; // Track if the player is favorited
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   void initState() {
@@ -48,6 +50,13 @@ class _PlayerCardState extends State<PlayerCard> {
       );
     } else {
       try {
+        final userId = _auth.currentUser?.uid; // Get current user ID
+        if (userId == null) {
+          throw Exception("User not authenticated");
+        }
+
+        print("Attempting to add player to favorites: ${widget.name}");
+
         await firestoreService.addFavoritePlayer({
           'name': widget.name,
           'position': widget.position,

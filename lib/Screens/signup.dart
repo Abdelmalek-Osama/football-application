@@ -1,12 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import '../home_screen.dart';
-import '../Custom-widgets/button.dart';
-import '../Custom-widgets/textfield.dart';
-import 'auth.dart';
-import 'login.dart';
-import 'package:firebase_auth/firebase_auth.dart';  // Add this import
+// Import the LeaguesScreen file
+import 'login.dart'; // Import the LoginScreen file
+import 'package:firebase_auth/firebase_auth.dart';
+  import 'leagues_screen.dart'; // Firebase Authentication
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -87,21 +83,24 @@ class _SignupScreenState extends State<SignupScreen> {
 
     try {
       // Attempt to create a new user
-      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+      await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
       // Show success message
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("Successful registration!"),
+        const SnackBar(
+          content: Text("Successful registration! Redirecting to Leagues page..."),
           duration: Duration(seconds: 2),
         ),
       );
 
-      // Navigate to the home screen or another screen after successful signup
-      goToLogin(context);
+      // Navigate to the leagues page after successful signup
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) =>  LeaguesScreen()),
+      );
     } catch (e) {
       String errorMessage = "Something went wrong. Please try again.";
       if (e is FirebaseAuthException) {
@@ -146,7 +145,7 @@ class _SignupScreenState extends State<SignupScreen> {
               decoration: InputDecoration(
                 hintText: "Enter Name",
                 labelText: "Name",
-                errorText: _nameError, // Show error message if exists
+                errorText: _nameError,
               ),
             ),
             const SizedBox(height: 20),
@@ -155,7 +154,7 @@ class _SignupScreenState extends State<SignupScreen> {
               decoration: InputDecoration(
                 hintText: "Enter Email",
                 labelText: "Email",
-                errorText: _emailError, // Show error message if exists
+                errorText: _emailError,
               ),
             ),
             const SizedBox(height: 20),
@@ -164,14 +163,17 @@ class _SignupScreenState extends State<SignupScreen> {
               decoration: InputDecoration(
                 hintText: "Enter Password",
                 labelText: "Password",
-                errorText: _passwordError, // Show error message if exists
+                errorText: _passwordError,
               ),
               obscureText: true,
             ),
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: _signup,
-              child: const Text("Signup"),
+              child: const Text(
+                "Signup",
+                style: TextStyle(color: Color.fromARGB(255, 255, 254, 254)), // Set text color to black
+              ),
             ),
             const SizedBox(height: 5),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -192,13 +194,6 @@ class _SignupScreenState extends State<SignupScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const LoginScreen()),
-    );
-  }
-
-  void goToHome(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const HomeScreen()),
     );
   }
 }

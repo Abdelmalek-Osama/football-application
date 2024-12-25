@@ -5,6 +5,7 @@ import 'Screens/team_search_screen.dart';
 import 'Screens/player_stats_screen.dart';
 import 'Screens/favorites_screen.dart';
 import 'Screens/leagues_screen.dart'; // Import the LeaguesScreen
+import 'Screens/search_favorites_screen.dart'; // Import the SearchFavoritesScreen
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -55,20 +56,12 @@ class HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Football Transfer Tracker'),
+        backgroundColor: Color(0xFF205295),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/footbackground.jpg'),
-            fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(
-              Colors.black.withOpacity(0.6),
-              BlendMode.darken,
-            ),
-          ),
-        ),
+        color: const Color.fromARGB(255, 9, 9, 9), // Set background color to white
         child: SingleChildScrollView(
           padding: EdgeInsets.all(16.0),
           child: Form(
@@ -80,15 +73,15 @@ class HomeScreenState extends State<HomeScreen> {
                   controller: _playerController,
                   decoration: InputDecoration(
                     labelText: 'Enter player name',
-                    labelStyle: TextStyle(color: Colors.white),
+                    labelStyle: TextStyle(color: Color(0xFF2C74B3)),
                     border: OutlineInputBorder(),
                     errorBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.red),
                     ),
                     filled: true,
-                    fillColor: Colors.black.withOpacity(0.5),
+                    fillColor: Color(0xFF144272).withOpacity(0.5),
                   ),
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Color(0xFF2C74B3)),
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
                       return 'Please enter a player name';
@@ -101,15 +94,15 @@ class HomeScreenState extends State<HomeScreen> {
                   controller: _teamController,
                   decoration: InputDecoration(
                     labelText: 'Enter team name',
-                    labelStyle: TextStyle(color: Colors.white),
+                    labelStyle: TextStyle(color: Color(0xFF2C74B3)),
                     border: OutlineInputBorder(),
                     errorBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.red),
                     ),
                     filled: true,
-                    fillColor: Colors.black.withOpacity(0.5),
+                    fillColor: Color(0xFF144272).withOpacity(0.5),
                   ),
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Color(0xFF2C74B3)),
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
                       return 'Please enter a team name';
@@ -120,10 +113,10 @@ class HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 20),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
+                    backgroundColor: Color(0xFF0A2647),
                     minimumSize: Size(200, 50),
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                    foregroundColor: Colors.white,
+                    foregroundColor: Color(0xFF2C74B3),
                   ),
                   onPressed: () => Navigator.push(
                     context,
@@ -134,7 +127,7 @@ class HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Color(0xFF2C74B3),
                     ),
                   ),
                 ),
@@ -143,10 +136,10 @@ class HomeScreenState extends State<HomeScreen> {
                     ? CircularProgressIndicator()
                     : ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
+                          backgroundColor: Color(0xFF0A2647),
                           minimumSize: Size(200, 50),
                           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                          foregroundColor: Colors.white,
+                          foregroundColor: Color(0xFF2C74B3),
                         ),
                         onPressed: _searchPlayer,
                         child: Text(
@@ -154,41 +147,17 @@ class HomeScreenState extends State<HomeScreen> {
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Color(0xFF2C74B3),
                           ),
                         ),
                       ),
                 SizedBox(height: 20),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
+                    backgroundColor: Color(0xFF0A2647),
                     minimumSize: Size(200, 50),
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                    foregroundColor: Colors.white,
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => FavoritesScreen()),
-                    );
-                  },
-                  child: Text(
-                    'Go to Favorites',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20),
-                // New button to navigate to LeaguesScreen
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    minimumSize: Size(200, 50),
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                    foregroundColor: Colors.white,
+                    foregroundColor: Color(0xFF2C74B3),
                   ),
                   onPressed: () {
                     Navigator.push(
@@ -201,7 +170,53 @@ class HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Color(0xFF2C74B3),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF0A2647),
+                    minimumSize: Size(200, 50),
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                    foregroundColor: Color(0xFF2C74B3),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => FavoritesScreen()),
+                    );
+                  },
+                  child: Text(
+                    'Go to Favorites',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF2C74B3),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF0A2647),
+                    minimumSize: Size(200, 50),
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                    foregroundColor: Color(0xFF2C74B3),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SearchFavoritesScreen()),
+                    );
+                  },
+                  child: Text(
+                    'Search User Favorites',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF2C74B3),
                     ),
                   ),
                 ),

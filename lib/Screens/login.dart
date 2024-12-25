@@ -54,18 +54,22 @@ class _LoginScreenState extends State<LoginScreen> {
               label: "Password",
               controller: _password,
               errorText: _passwordError,
+              isPassword: true,
             ),
             const SizedBox(height: 30),
             CustomButton(
               label: "Login",
               onPressed: _login,
+              textColor: const Color.fromARGB(255, 244, 243, 243), // Set button text color to black
             ),
             const SizedBox(height: 10),
             CustomButton(
                 label: "Signin with Google",
                 onPressed: () async {
                   await _auth.loginWithGoogle();
-                }),
+                },
+                textColor: const Color.fromARGB(255, 248, 244, 244), // Set button text color to black
+            ),
             const SizedBox(height: 5),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               const Text("Already have an account? "),

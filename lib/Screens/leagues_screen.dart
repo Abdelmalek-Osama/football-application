@@ -1,6 +1,7 @@
 // lib/Screens/leagues_screen.dart
 import 'package:flutter/material.dart';
 import '../services/ApiService.dart';
+import '../services/firestore_service.dart';
 
 class LeaguesScreen extends StatefulWidget {
   @override
@@ -9,8 +10,10 @@ class LeaguesScreen extends StatefulWidget {
 
 class _LeaguesScreenState extends State<LeaguesScreen> {
   final ApiService _apiService = ApiService();
+  final FirestoreService _firestoreService = FirestoreService();
   bool _isLoading = true;
   List<dynamic> leagues = [];
+  List<String> selectedLeagueIds = []; // List to hold selected league IDs
 
   @override
   void initState() {
@@ -21,10 +24,8 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
   Future<void> _loadLeagues() async {
     try {
       final result = await _apiService.getLeagues();
-      
-      // Ensure the response is a List and assign to `leagues`
       setState(() {
-        leagues = result; // Since `getLeagues` already returns a List of leagues
+        leagues = result;
         _isLoading = false;
       });
     } catch (e) {
@@ -32,6 +33,30 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
         SnackBar(content: Text('Error loading leagues: $e')),
       );
       setState(() => _isLoading = false);
+    }
+  }
+
+  void _toggleLeagueSelection(String leagueId, bool isSelected) {
+    setState(() {
+      if (isSelected) {
+        selectedLeagueIds.add(leagueId); // Add league ID to the list
+      } else {
+        selectedLeagueIds.remove(leagueId); // Remove league ID from the list
+      }
+    });
+  }
+
+  Future<void> _saveSelectedLeagues() async {
+    final userId = _firestoreService.getCurrentUserId(); // Get current user ID
+    if (userId != null) {
+      await _firestoreService.saveUserLeagues(userId, selectedLeagueIds);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Leagues saved successfully!')),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('User not authenticated.')),
+      );
     }
   }
 
@@ -43,26 +68,25 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
       ),
       body: _isLoading
           ? Center(child: CircularProgressIndicator())
-          : leagues.isEmpty
-              ? Center(child: Text('No leagues available'))
-              : ListView.builder(
-                  itemCount: leagues.length,
-                  itemBuilder: (context, index) {
-                    final league = leagues[index]['league']; // Access league info
-                    final country = leagues[index]['country']; // Access country info
-                    return ListTile(
-                      title: Text(league['name'] ?? 'Unknown League'),
-                      subtitle: Text(country['name'] ?? 'Unknown Country'),
-                      leading: league['logo'] != null
-                          ? Image.network(
-                              league['logo'],
-                              height: 40,
-                              width: 40,
-                            )
-                          : null,
-                    );
+          : ListView.builder(
+              itemCount: leagues.length,
+              itemBuilder: (context, index) {
+                final league = leagues[index]['league'];
+                  final leagueId = league['id'].toString(); // Assuming league has an 'id' field
+                final isSelected = selectedLeagueIds.contains(leagueId);
+                return CheckboxListTile(
+                  title: Text(league['name'] ?? 'Unknown League'),
+                  value: isSelected,
+                  onChanged: (bool? value) {
+                    _toggleLeagueSelection(leagueId, value ?? false);
                   },
-                ),
+                );
+              },
+            ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _saveSelectedLeagues,
+        child: Icon(Icons.save),
+      ),
     );
   }
 }
