@@ -1,0 +1,9 @@
+<resources>
+    <string name="google_app_id">1:791172117475:android:ea33c2391b585062b4a6d6</string>
+    <string name="gcm_defaultSenderId">791172117475</string>
+    <string name="firebase_database_url">https://zeft-1e762.firebaseio.com</string>
+    <string name="google_api_key">AIzaSyCHCcG14HlKn5IBBaXep-hQoLADFMsGruY</string>
+    <string name="google_crash_reporting_api_key">AIzaSyCHCcG14HlKn5IBBaXep-hQoLADFMsGruY</string>
+    <string name="project_id">zeft-1e762</string>
+    <string name="storage_bucket">zeft-1e762.appspot.com</string>
+</resources>

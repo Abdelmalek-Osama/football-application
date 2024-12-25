@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "791172117475",
+    "project_id": "zeft-1e762",
+    "storage_bucket": "zeft-1e762.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791172117475:android:ea33c2391b585062b4a6d6",
+        "android_client_info": {
+          "package_name": "com.example.flutter_lab2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHCcG14HlKn5IBBaXep-hQoLADFMsGruY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
