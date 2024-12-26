@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_lab2/Custom-widgets/customtext.dart';
 import 'package:flutter_lab2/constants.dart';
@@ -31,6 +32,9 @@ class NewsScreen extends StatelessWidget {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
               } else if (snapshot.hasError) {
+                if (kDebugMode) {
+                  print(snapshot.error);
+                }
                 return const Center(child: Text("Failed to load news"));
               } else if (snapshot.hasData) {
                 final newsList = snapshot.data!;
@@ -59,6 +63,14 @@ class NewsScreen extends StatelessWidget {
                                             height: 200,
                                             width: double.infinity,
                                             fit: BoxFit.cover,
+                                            errorBuilder:
+                                                (context, error, stackTrace) {
+                                              return const Center(
+                                                child: Icon(Icons.broken_image,
+                                                    size: 50,
+                                                    color: Colors.grey),
+                                              );
+                                            },
                                           ),
                                         )
                                       : const SizedBox(height: 200),
