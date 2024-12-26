@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 
 class FirestoreService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
@@ -19,7 +20,9 @@ class FirestoreService {
         _db.collection('users').doc(user.uid).collection('favorites');
 
     // Log the player data being added
-    print("Adding player data: $playerData");
+    if (kDebugMode) {
+      print("Adding player data: $playerData");
+    }
 
     // Check if the player already exists in favorites
     final existingPlayer = await favoritesCollection
@@ -34,9 +37,13 @@ class FirestoreService {
     try {
       // If not, add the player to favorites
       await favoritesCollection.add(playerData);
-      print("Player added to favorites: ${playerData['name']}");
+      if (kDebugMode) {
+        print("Player added to favorites: ${playerData['name']}");
+      }
     } catch (e) {
-      print("Error adding player to favorites: $e"); // Log any errors
+      if (kDebugMode) {
+        print("Error adding player to favorites: $e");
+      } // Log any errors
       throw Exception('Failed to add player to favorites: $e');
     }
   }

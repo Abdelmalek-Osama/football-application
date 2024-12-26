@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lab2/Custom-widgets/bottom_navigation.dart';
 import 'auth.dart';
 import 'signup.dart';
-import '../home_screen.dart';
 import '../Custom-widgets/button.dart';
 import '../Custom-widgets/textfield.dart';
 import 'package:firebase_auth/firebase_auth.dart';

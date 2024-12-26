@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lab2/Screens/favorites_screen.dart';
 import 'package:flutter_lab2/Screens/leagues_screen.dart';
 import 'package:flutter_lab2/Screens/login.dart';
+import 'package:flutter_lab2/Screens/search_favorites_screen.dart';
 
 class Sidebar extends StatelessWidget {
   const Sidebar({super.key});
@@ -57,6 +58,22 @@ class Sidebar extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => const LeaguesScreen()),
+                    );
+                  },
+                ),
+                // search Favorite
+                ListTile(
+                  leading: Icon(
+                    Icons.search,
+                  ),
+                  title: const Text(
+                    'Search Favorite',
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SearchFavoritesScreen()),
                     );
                   },
                 ),
