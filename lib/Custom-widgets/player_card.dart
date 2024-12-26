@@ -9,12 +9,12 @@ class PlayerCard extends StatefulWidget {
   final VoidCallback onTap;
 
   const PlayerCard({
-    Key? key,
+    super.key,
     required this.name,
     required this.position,
     this.photoUrl,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   _PlayerCardState createState() => _PlayerCardState();

@@ -4,7 +4,7 @@ class PlayerStatsScreen extends StatelessWidget {
   final Map<String, dynamic> playerData;
   final String? teamId;
 
-  const PlayerStatsScreen({Key? key, required this.playerData, this.teamId}) : super(key: key);
+  const PlayerStatsScreen({super.key, required this.playerData, this.teamId});
 
   @override
   Widget build(BuildContext context) {

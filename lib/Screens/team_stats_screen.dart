@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab2/Screens/team_players_screen.dart';
 
 class TeamStatsScreen extends StatelessWidget {
   final Map<String, dynamic> teamData;
   final String? teamId;
 
   const TeamStatsScreen({
-    Key? key,
+    super.key,
     required this.teamData,
     this.teamId,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +83,27 @@ class TeamStatsScreen extends StatelessWidget {
                         
                     
                   ],
+                ),
+              ),
+            ),
+            SizedBox(height: 16),
+            // button for players
+            ElevatedButton(
+              onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TeamPlayersScreen(
+                    teamData: teamData,
+                    teamId: teamId,
+                  ),
+                ),
+              ),
+              child: Text(
+                'View Players',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
             ),

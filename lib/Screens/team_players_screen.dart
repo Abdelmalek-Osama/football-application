@@ -8,10 +8,10 @@ class TeamPlayersScreen extends StatefulWidget {
   final String? teamId;
 
   const TeamPlayersScreen({
-    Key? key,
+    super.key,
     required this.teamData,
     this.teamId,
-  }) : super(key: key);
+  });
 
   @override
   _TeamPlayersScreenState createState() => _TeamPlayersScreenState();

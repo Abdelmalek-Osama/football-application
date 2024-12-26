@@ -62,7 +62,7 @@ class FirestoreService {
           .collection('favorites')
           .get();
       return snapshot.docs
-          .map((doc) => doc.data() as Map<String, dynamic>)
+          .map((doc) => doc.data())
           .toList();
     }
     return [];

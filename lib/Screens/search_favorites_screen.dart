@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../services/firestore_service.dart';
 
 class SearchFavoritesScreen extends StatefulWidget {
+  const SearchFavoritesScreen({super.key});
+
   @override
   _SearchFavoritesScreenState createState() => _SearchFavoritesScreenState();
 }

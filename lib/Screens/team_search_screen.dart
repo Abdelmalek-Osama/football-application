@@ -4,6 +4,8 @@ import '../Screens/team_stats_screen.dart';
 import '../Screens/team_players_screen.dart';
 
 class TeamSearchScreen extends StatefulWidget {
+  const TeamSearchScreen({super.key});
+
   @override
   _TeamSearchScreenState createState() => _TeamSearchScreenState();
 }
@@ -32,6 +34,16 @@ class _TeamSearchScreenState extends State<TeamSearchScreen> {
       );
     } finally {
       setState(() => _isLoading = false);
+      if (teamData != null) {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => TeamStatsScreen(
+              teamData: teamData!,
+              teamId: selectedTeamId!,
+            ),
+          ),
+        );
+      }
     }
   }
 
@@ -102,64 +114,7 @@ class _TeamSearchScreenState extends State<TeamSearchScreen> {
                           ),
                         ),
                       ),
-                if (teamData != null) ...[
-                  SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                          minimumSize: Size(150, 50),
-                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                          foregroundColor: Colors.white,
-                        ),
-                        onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => TeamStatsScreen(
-                              teamData: teamData!,
-                              teamId: selectedTeamId,
-                            ),
-                          ),
-                        ),
-                        child: Text(
-                          'View Team Stats',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                          minimumSize: Size(150, 50),
-                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                          foregroundColor: Colors.white,
-                        ),
-                        onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => TeamPlayersScreen(
-                              teamData: teamData!,
-                              teamId: selectedTeamId,
-                            ),
-                          ),
-                        ),
-                        child: Text(
-                          'View Players',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+                SizedBox(height: 20),
               ],
             ),
           ),

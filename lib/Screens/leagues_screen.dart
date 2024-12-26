@@ -4,6 +4,8 @@ import '../services/ApiService.dart';
 import '../services/firestore_service.dart';
 
 class LeaguesScreen extends StatefulWidget {
+  const LeaguesScreen({super.key});
+
   @override
   _LeaguesScreenState createState() => _LeaguesScreenState();
 }

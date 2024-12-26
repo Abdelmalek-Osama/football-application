@@ -9,10 +9,13 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Football Transfer Tracker',
+      debugShowCheckedModeBanner: false,
+      title: 'Fanzawy',
       theme: ThemeData(
         primaryColor: Color(0xFF0A2647),
         scaffoldBackgroundColor: Color(0xFF144272),

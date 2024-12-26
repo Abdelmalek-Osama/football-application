@@ -1,6 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_lab2/Custom-widgets/bottom_navigation.dart';
 import 'auth.dart';
 import 'signup.dart';
 import '../home_screen.dart';
@@ -60,15 +59,17 @@ class _LoginScreenState extends State<LoginScreen> {
             CustomButton(
               label: "Login",
               onPressed: _login,
-              textColor: const Color.fromARGB(255, 244, 243, 243), // Set button text color to black
+              textColor: const Color.fromARGB(
+                  255, 244, 243, 243), // Set button text color to black
             ),
             const SizedBox(height: 10),
             CustomButton(
-                label: "Signin with Google",
-                onPressed: () async {
-                  await _auth.loginWithGoogle();
-                },
-                textColor: const Color.fromARGB(255, 248, 244, 244), // Set button text color to black
+              label: "Signin with Google",
+              onPressed: () async {
+                await _auth.loginWithGoogle();
+              },
+              textColor: const Color.fromARGB(
+                  255, 248, 244, 244), // Set button text color to black
             ),
             const SizedBox(height: 5),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -86,14 +87,14 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  goToSignup(BuildContext context) => Navigator.push(
+  goToSignup(BuildContext context) => Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const SignupScreen()),
       );
 
-  goToHome(BuildContext context) => Navigator.push(
+  goToHome(BuildContext context) => Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
+        MaterialPageRoute(builder: (context) => const BottomNavigation()),
       );
 
   Future<void> _login() async {

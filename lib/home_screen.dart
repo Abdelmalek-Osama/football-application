@@ -1,11 +1,7 @@
 // lib/home_screen.dart
 import 'package:flutter/material.dart';
 import 'services/ApiService.dart';
-import 'Screens/team_search_screen.dart';
 import 'Screens/player_stats_screen.dart';
-import 'Screens/favorites_screen.dart';
-import 'Screens/leagues_screen.dart'; // Import the LeaguesScreen
-import 'Screens/search_favorites_screen.dart'; // Import the SearchFavoritesScreen
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -55,13 +51,14 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Football Transfer Tracker'),
+        title: Center(child: Text('Player Search')),
         backgroundColor: Color(0xFF205295),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        color: const Color.fromARGB(255, 9, 9, 9), // Set background color to white
+        color:
+            const Color.fromARGB(255, 9, 9, 9), // Set background color to white
         child: SingleChildScrollView(
           padding: EdgeInsets.all(16.0),
           child: Form(
@@ -111,34 +108,14 @@ class HomeScreenState extends State<HomeScreen> {
                   },
                 ),
                 SizedBox(height: 20),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF0A2647),
-                    minimumSize: Size(200, 50),
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                    foregroundColor: Color(0xFF2C74B3),
-                  ),
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => TeamSearchScreen()),
-                  ),
-                  child: Text(
-                    'Search Teams',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF2C74B3),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20),
                 _isLoading
                     ? CircularProgressIndicator()
                     : ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xFF0A2647),
                           minimumSize: Size(200, 50),
-                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 12),
                           foregroundColor: Color(0xFF2C74B3),
                         ),
                         onPressed: _searchPlayer,
@@ -152,74 +129,6 @@ class HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                 SizedBox(height: 20),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF0A2647),
-                    minimumSize: Size(200, 50),
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                    foregroundColor: Color(0xFF2C74B3),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LeaguesScreen()),
-                    );
-                  },
-                  child: Text(
-                    'Go to Leagues',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF2C74B3),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF0A2647),
-                    minimumSize: Size(200, 50),
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                    foregroundColor: Color(0xFF2C74B3),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => FavoritesScreen()),
-                    );
-                  },
-                  child: Text(
-                    'Go to Favorites',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF2C74B3),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF0A2647),
-                    minimumSize: Size(200, 50),
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                    foregroundColor: Color(0xFF2C74B3),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SearchFavoritesScreen()),
-                    );
-                  },
-                  child: Text(
-                    'Search User Favorites',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF2C74B3),
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
