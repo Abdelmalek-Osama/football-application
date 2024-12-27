@@ -7,23 +7,33 @@ import 'package:flutter_lab2/Features/matches/matches_repo.dart';
 import 'package:flutter_lab2/Features/matches/tomatches_model.dart';
 import 'package:flutter_lab2/Features/matches/logo_name_league.dart';
 import 'package:flutter_lab2/Features/matches/logo_name_teams.dart';
+import 'package:flutter_lab2/services/firestore_service.dart';
 import 'package:intl/intl.dart';
 
 import '../../Custom-widgets/custom_app_bar.dart';
 
-class TodayMatches extends StatelessWidget {
+class TodayMatches extends StatefulWidget {
   final TodayMatchesRepo todayMatchesRepo;
 
-  const TodayMatches({super.key, required this.todayMatchesRepo});
+  TodayMatches({super.key, required this.todayMatchesRepo});
+
+  @override
+  State<TodayMatches> createState() => _TodayMatchesState();
+}
+
+class _TodayMatchesState extends State<TodayMatches> {
+  final FirestoreService _firestoreService = FirestoreService();
+
 
   Future<List<NextFixturesModel>> fetchMatches() async {
-    var leagues = ['123', '39', '2'];
+    final userId = _firestoreService.getCurrentUserId();
+    var leagues = await _firestoreService.getUserLeagues(userId!);
     List<NextFixturesModel> matchesList = [];
     for (int i = 0; i < leagues.length; i++) {
       matchesList +=
-          await todayMatchesRepo.getTodayMatches("last=5&league=${leagues[i]}");
+          await widget.todayMatchesRepo.getTodayMatches("last=5&league=${leagues[i]}");
       matchesList +=
-          await todayMatchesRepo.getTodayMatches("next=5&league=${leagues[i]}");
+          await widget.todayMatchesRepo.getTodayMatches("next=5&league=${leagues[i]}");
     }
     return matchesList;
   }
