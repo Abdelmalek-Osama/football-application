@@ -53,15 +53,15 @@ class _TeamSearchScreenState extends State<TeamSearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer:  CustomEndDrawerAnimation(drawer: Sidebar()),
-      appBar:CustomAppBar(title: 'Search Team'),
+      endDrawer: CustomEndDrawerAnimation(drawer: Sidebar()),
+      appBar: CustomAppBar(title: 'Search Team'),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/footbackground.jpg'),
-            fit: BoxFit.cover,
+            image: AssetImage('images/footbackground1.jpg'),
+            fit: BoxFit.fill,
             colorFilter: ColorFilter.mode(
               Colors.black.withOpacity(0.6),
               BlendMode.darken,
@@ -70,21 +70,23 @@ class _TeamSearchScreenState extends State<TeamSearchScreen> {
         ),
         child: SingleChildScrollView(
           padding: EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                TextFormField(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Form(
+                key: _formKey,
+                child: TextFormField(
                   controller: _teamController,
                   decoration: InputDecoration(
-                    labelText: 'Enter team name',
-                    labelStyle: TextStyle(color: Colors.white),
-                    border: OutlineInputBorder(),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red),
-                    ),
+                    hintText: 'Search for a team...',
+                    hintStyle: TextStyle(color: Colors.white),
+                    prefixIcon: Icon(Icons.search, color: Colors.white),
                     filled: true,
                     fillColor: Colors.black.withOpacity(0.5),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide.none,
+                    ),
                   ),
                   style: TextStyle(color: Colors.white),
                   validator: (value) {
@@ -94,29 +96,29 @@ class _TeamSearchScreenState extends State<TeamSearchScreen> {
                     return null;
                   },
                 ),
-                SizedBox(height: 20),
-                _isLoading
-                    ? CircularProgressIndicator()
-                    : ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                          minimumSize: Size(200, 50),
-                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                          foregroundColor: Colors.white,
-                        ),
-                        onPressed: _searchTeam,
-                        child: Text(
-                          'Search Team',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
+              ),
+              SizedBox(height: 16),
+              _isLoading
+                  ? Center(child: CircularProgressIndicator())
+                  : ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        minimumSize: Size(double.infinity, 50),
+                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                        foregroundColor: Colors.white,
+                      ),
+                      onPressed: _searchTeam,
+                      child: Text(
+                        'Search',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
-                SizedBox(height: 20),
-              ],
-            ),
+                    ),
+              SizedBox(height: 24),
+            ],
           ),
         ),
       ),
