@@ -104,4 +104,17 @@ class FirestoreService {
       'favoriteLeagues': leagueIds, // Save the list of league IDs
     }, SetOptions(merge: true)); // Use merge to avoid overwriting other fields
   }
+
+  Future<List<String>> getUserLeagues(String userId) async {
+  try {
+    final doc = await _db.collection('users').doc(userId).get();
+    if (doc.exists && doc.data() != null) {
+      return List<String>.from(doc.data()!['favoriteLeagues'] ?? []);
+    }
+    return [];
+  } catch (e) {
+    debugPrint('Error retrieving user leagues: $e');
+    throw Exception('Failed to retrieve user leagues');
+  }
+}
 }
