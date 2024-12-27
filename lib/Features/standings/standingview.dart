@@ -6,6 +6,9 @@ import 'package:flutter_lab2/Features/standings/models/standingsmodel.dart';
 import 'package:flutter_lab2/Features/standings/widgets/tableheaders.dart';
 import 'package:flutter_lab2/Features/standings/widgets/tablerow.dart';
 
+import '../../Custom-widgets/custom_app_bar.dart';
+import '../../Custom-widgets/custom_end_drawer.dart';
+import '../../Custom-widgets/side_bar.dart';
 import '../../constants.dart';
 
 class StandingviewScreen extends StatelessWidget {
@@ -19,18 +22,9 @@ class StandingviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0XFF0A2647),
-      appBar: AppBar(
-        backgroundColor: const Color(0XFF144272),
-        title: Center(
-          child: CustomText(
-            text: "Standing",
-            isBold: true,
-            fontSize: 30,
-            colours: primaryTextColor,
-          ),
-        ),
-      ),
+      backgroundColor: kBackgroundColor,
+      endDrawer:  CustomEndDrawerAnimation(drawer: Sidebar()),
+      appBar: CustomAppBar(title: 'Standings'),
       body: FutureBuilder<League>(
         future: fetchMatches(),
         builder: (context, snapshot) {

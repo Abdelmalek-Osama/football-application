@@ -9,6 +9,8 @@ import 'package:flutter_lab2/Features/matches/logo_name_league.dart';
 import 'package:flutter_lab2/Features/matches/logo_name_teams.dart';
 import 'package:intl/intl.dart';
 
+import '../../Custom-widgets/custom_app_bar.dart';
+
 class TodayMatches extends StatelessWidget {
   final TodayMatchesRepo todayMatchesRepo;
 
@@ -29,20 +31,9 @@ class TodayMatches extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: const CustomEndDrawerAnimation(drawer: Sidebar()),
-      backgroundColor: const Color(0XFF0A2647),
-      appBar: AppBar(
-        backgroundColor: const Color(0XFF144272),
-        title: Center(
-          child: CustomText(
-            text: "Matches",
-            isBold: true,
-            fontSize: 30,
-            colours: primaryTextColor,
-          ),
-        ),
-        
-      ),
+      endDrawer: CustomEndDrawerAnimation(drawer: Sidebar()),
+      backgroundColor: kBackgroundColor,
+      appBar: CustomAppBar(title: 'Matches'),
       body: FutureBuilder<List<NextFixturesModel>>(
         future: fetchMatches(),
         builder: (context, snapshot) {
@@ -63,7 +54,7 @@ class TodayMatches extends StatelessWidget {
                       DateFormat('dd-MM-yyyy').format(dateTime);
                   return Center(
                     child: Card(
-                      color: const Color(0xFF205295),
+                      color: cardBackgroundColor,
                       margin: const EdgeInsets.all(15),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0)),

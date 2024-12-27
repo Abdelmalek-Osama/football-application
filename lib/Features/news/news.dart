@@ -6,6 +6,8 @@ import 'package:flutter_lab2/Features/news/newsmodel.dart';
 import 'package:flutter_lab2/Features/news/todaynews.dart';
 import 'package:intl/intl.dart';
 
+import '../../Custom-widgets/custom_app_bar.dart';
+
 class NewsScreen extends StatelessWidget {
   final Todaynews todayNewsRepo;
   const NewsScreen({super.key, required this.todayNewsRepo});
@@ -16,16 +18,8 @@ class NewsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0XFF0A2647),
-        appBar: AppBar(
-            backgroundColor: const Color(0XFF144272),
-            title: Center(
-                child: CustomText(
-              text: "Today's News",
-              isBold: true,
-              fontSize: 30,
-              colours: primaryTextColor,
-            ))),
+        backgroundColor: kBackgroundColor,
+        appBar: CustomAppBar(title: 'Today\'s News'),
         body: FutureBuilder<List<News>>(
             future: fetchMatches(),
             builder: (context, snapshot) {
@@ -46,7 +40,7 @@ class NewsScreen extends StatelessWidget {
                         DateFormat('h:mm a').format(dateTime);
                     return Center(
                         child: Card(
-                            color: const Color(0xFF205295),
+                            color: cardBackgroundColor,
                             margin: const EdgeInsets.all(15),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0)),

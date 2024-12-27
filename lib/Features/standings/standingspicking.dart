@@ -15,9 +15,9 @@ class StandingPicking extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0XFF0A2647),
+        backgroundColor: kBackgroundColor,
         appBar: AppBar(
-          backgroundColor: const Color(0XFF144272),
+          backgroundColor: appBarBackgroundColor,
           title: Center(
             child: CustomText(
               text: "Seasons",

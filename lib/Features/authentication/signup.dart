@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 // Import the LeaguesScreen file
 import 'login.dart'; // Import the LoginScreen file
 import 'package:firebase_auth/firebase_auth.dart';
-  import '../leagues_screen.dart'; // Firebase Authentication
+  import '../../Screens/leagues_screen.dart'; // Firebase Authentication
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});

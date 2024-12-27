@@ -1,5 +1,9 @@
 // lib/home_screen.dart
 import 'package:flutter/material.dart';
+import '../../Custom-widgets/custom_app_bar.dart';
+import '../../Custom-widgets/custom_end_drawer.dart';
+import '../../Custom-widgets/side_bar.dart';
+import '../../constants.dart';
 import '../../services/ApiService.dart';
 import 'player_stats_screen.dart';
 
@@ -50,10 +54,8 @@ class PlayerScreenState extends State<PlayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Center(child: Text('Player Search')),
-        backgroundColor: Color(0xFF205295),
-      ),
+      endDrawer: CustomEndDrawerAnimation(drawer: Sidebar()),
+      appBar: CustomAppBar(title: 'Search Player'),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -76,7 +78,7 @@ class PlayerScreenState extends State<PlayerScreen> {
                       borderSide: BorderSide(color: Colors.red),
                     ),
                     filled: true,
-                    fillColor: Color(0xFF144272).withOpacity(0.5),
+                    fillColor: appBarBackgroundColor.withOpacity(0.5),
                   ),
                   style: TextStyle(color: Color(0xFF2C74B3)),
                   validator: (value) {
@@ -97,7 +99,7 @@ class PlayerScreenState extends State<PlayerScreen> {
                       borderSide: BorderSide(color: Colors.red),
                     ),
                     filled: true,
-                    fillColor: Color(0xFF144272).withOpacity(0.5),
+                    fillColor: appBarBackgroundColor.withOpacity(0.5),
                   ),
                   style: TextStyle(color: Color(0xFF2C74B3)),
                   validator: (value) {
@@ -112,7 +114,7 @@ class PlayerScreenState extends State<PlayerScreen> {
                     ? CircularProgressIndicator()
                     : ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFF0A2647),
+                          backgroundColor: kBackgroundColor,
                           minimumSize: Size(200, 50),
                           padding: EdgeInsets.symmetric(
                               horizontal: 20, vertical: 12),

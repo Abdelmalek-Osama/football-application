@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'Features/authentication/login.dart';
+import 'constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,15 +18,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Fanzawy',
       theme: ThemeData(
-        primaryColor: Color(0xFF0A2647),
-        scaffoldBackgroundColor: Color(0xFF144272),
+        primaryColor: kBackgroundColor,
+        scaffoldBackgroundColor: appBarBackgroundColor,
         colorScheme: ColorScheme.fromSwatch().copyWith(
-          primary: Color(0xFF0A2647),
+          primary: kBackgroundColor,
           secondary: Color(0xFF2C74B3),
         ),
-        appBarTheme: AppBarTheme(backgroundColor: Color(0xFF205295)),
+        appBarTheme: AppBarTheme(backgroundColor: cardBackgroundColor),
         elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF0A2647)),
+          style: ElevatedButton.styleFrom(backgroundColor: kBackgroundColor),
         ),
       ),
       home: LoginScreen(),

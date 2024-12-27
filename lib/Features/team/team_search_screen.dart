@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../Custom-widgets/custom_app_bar.dart';
+import '../../Custom-widgets/custom_end_drawer.dart';
+import '../../Custom-widgets/side_bar.dart';
 import '../../services/ApiService.dart';
 import 'team_stats_screen.dart';
 import 'team_players_screen.dart';
@@ -50,11 +53,8 @@ class _TeamSearchScreenState extends State<TeamSearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Team Search'),
-        backgroundColor: Colors.black.withOpacity(0.6),
-        elevation: 0,
-      ),
+      endDrawer:  CustomEndDrawerAnimation(drawer: Sidebar()),
+      appBar:CustomAppBar(title: 'Search Team'),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,

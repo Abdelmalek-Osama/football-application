@@ -6,7 +6,7 @@ import '../../../constants.dart';
 TableCell createTableCell(String text, [bool isHeader = false]) {
   return TableCell(
     child: Container(
-      color: isHeader ? const Color(0xFF205295) : const Color(0xFF2C74B3),
+      color: isHeader ? cardBackgroundColor : const Color(0xFF2C74B3),
       child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
           child: CustomText(
