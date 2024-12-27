@@ -1,16 +1,16 @@
 // lib/home_screen.dart
 import 'package:flutter/material.dart';
-import 'services/ApiService.dart';
-import 'Screens/player_stats_screen.dart';
+import '../../services/ApiService.dart';
+import 'player_stats_screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class PlayerScreen extends StatefulWidget {
+  const PlayerScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => HomeScreenState();
+  State<PlayerScreen> createState() => PlayerScreenState();
 }
 
-class HomeScreenState extends State<HomeScreen> {
+class PlayerScreenState extends State<PlayerScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _playerController = TextEditingController();
   final TextEditingController _teamController = TextEditingController();

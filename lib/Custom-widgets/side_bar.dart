@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_lab2/Screens/favorites_screen.dart';
-import 'package:flutter_lab2/Screens/leagues_screen.dart';
-import 'package:flutter_lab2/Screens/login.dart';
-import 'package:flutter_lab2/Screens/search_favorites_screen.dart';
+import 'package:flutter_lab2/Features/favorite/favorites_screen.dart';
+import 'package:flutter_lab2/Features/leagues_screen.dart';
+import 'package:flutter_lab2/Features/authentication/login.dart';
+import 'package:flutter_lab2/Features/favorite/search_favorites_screen.dart';
 
 class Sidebar extends StatelessWidget {
   const Sidebar({super.key});

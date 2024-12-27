@@ -1,6 +1,6 @@
 // In lib/Screens/search_favorites_screen.dart
 import 'package:flutter/material.dart';
-import '../services/firestore_service.dart';
+import '../../services/firestore_service.dart';
 
 class SearchFavoritesScreen extends StatefulWidget {
   const SearchFavoritesScreen({super.key});

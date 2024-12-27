@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../services/ApiService.dart';
-import '../Custom-widgets/player_card.dart';
-import '../Screens/player_stats_screen.dart';
+import '../../services/ApiService.dart';
+import '../../Custom-widgets/player_card.dart';
+import '../player/player_stats_screen.dart';
 
 class TeamPlayersScreen extends StatefulWidget {
   final Map<String, dynamic> teamData;

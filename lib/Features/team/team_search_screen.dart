@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../services/ApiService.dart';
-import '../Screens/team_stats_screen.dart';
-import '../Screens/team_players_screen.dart';
+import '../../services/ApiService.dart';
+import 'team_stats_screen.dart';
+import 'team_players_screen.dart';
 
 class TeamSearchScreen extends StatefulWidget {
   const TeamSearchScreen({super.key});

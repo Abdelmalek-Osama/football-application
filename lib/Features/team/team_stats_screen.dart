@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab2/Screens/team_players_screen.dart';
+import 'package:flutter_lab2/Features/team/team_players_screen.dart';
 
 class TeamStatsScreen extends StatelessWidget {
   final Map<String, dynamic> teamData;

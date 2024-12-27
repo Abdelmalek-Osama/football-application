@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab2/Custom-widgets/bottom_navigation.dart';
-import 'auth.dart';
+import 'auth_service.dart';
 import 'signup.dart';
-import '../Custom-widgets/button.dart';
-import '../Custom-widgets/textfield.dart';
+import '../../Custom-widgets/button.dart';
+import '../../Custom-widgets/textfield.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {

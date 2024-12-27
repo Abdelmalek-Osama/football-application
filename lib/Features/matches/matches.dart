@@ -3,10 +3,10 @@ import 'package:flutter_lab2/Custom-widgets/custom_end_drawer.dart';
 import 'package:flutter_lab2/Custom-widgets/customtext.dart';
 import 'package:flutter_lab2/Custom-widgets/side_bar.dart';
 import 'package:flutter_lab2/constants.dart';
-import 'package:flutter_lab2/filo/matches_repo.dart';
-import 'package:flutter_lab2/filo/tomatches_model.dart';
-import 'package:flutter_lab2/filo/utils/logonameleague.dart';
-import 'package:flutter_lab2/filo/utils/logonameteams.dart';
+import 'package:flutter_lab2/Features/matches/matches_repo.dart';
+import 'package:flutter_lab2/Features/matches/tomatches_model.dart';
+import 'package:flutter_lab2/Features/matches/logo_name_league.dart';
+import 'package:flutter_lab2/Features/matches/logo_name_teams.dart';
 import 'package:intl/intl.dart';
 
 class TodayMatches extends StatelessWidget {

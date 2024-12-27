@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab2/Screens/team_search_screen.dart';
-import 'package:flutter_lab2/filo/matches.dart';
-import 'package:flutter_lab2/filo/matches_repo.dart';
-import 'package:flutter_lab2/filo/news.dart';
-import 'package:flutter_lab2/filo/todaynews.dart';
-import 'package:flutter_lab2/home_screen.dart';
+import 'package:flutter_lab2/Features/standings/repo/season_repo.dart';
+import 'package:flutter_lab2/Features/standings/repo/standing_repo.dart';
+import 'package:flutter_lab2/Features/standings/standingspicking.dart';
+import 'package:flutter_lab2/Features/standings/standingview.dart';
+import 'package:flutter_lab2/Features/team/team_search_screen.dart';
+import 'package:flutter_lab2/Features/matches/matches.dart';
+import 'package:flutter_lab2/Features/matches/matches_repo.dart';
+import 'package:flutter_lab2/Features/news/news.dart';
+import 'package:flutter_lab2/Features/news/todaynews.dart';
+import 'package:flutter_lab2/Features/player/player_screen.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
@@ -29,8 +33,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
     final screens = [
       TodayMatches(todayMatchesRepo: TodayMatchesRepo()),
       NewsScreen(todayNewsRepo: Todaynews()),
-      // Container(),
-      HomeScreen(),
+      StandingviewScreen(standingRepo: StandingRepo()),
+      // StandingPicking(seasonRepo: SeasonRepo()),
+      PlayerScreen(),
       TeamSearchScreen(),
     ];
     return Scaffold(
@@ -54,6 +59,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
               icon: Icon(Icons.newspaper),
               selectedIcon: Icon(Icons.newspaper),
               label: 'News',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.stacked_line_chart),
+              selectedIcon: Icon(Icons.stacked_line_chart),
+              label: 'Standings',
             ),
             NavigationDestination(
               icon: Icon(Icons.run_circle_outlined),
