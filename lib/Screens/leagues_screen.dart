@@ -25,31 +25,30 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
     _loadSelectedLeagues();
   }
 
-Future<void> _loadLeagues() async {
-  try {
-    final result = await _apiService.getLeagues();
-    final userId = _firestoreService.getCurrentUserId();
-    if (userId != null) {
-      final savedLeagues = await _firestoreService.getUserLeagues(userId);
-      setState(() {
-        leagues = result;
-        selectedLeagueIds = savedLeagues; // Pre-select saved leagues
-        _isLoading = false;
-      });
-    } else {
-      setState(() {
-        leagues = result;
-        _isLoading = false;
-      });
+  Future<void> _loadLeagues() async {
+    try {
+      final result = await _apiService.getLeagues();
+      final userId = _firestoreService.getCurrentUserId();
+      if (userId != null) {
+        final savedLeagues = await _firestoreService.getUserLeagues(userId);
+        setState(() {
+          leagues = result;
+          selectedLeagueIds = savedLeagues; // Pre-select saved leagues
+          _isLoading = false;
+        });
+      } else {
+        setState(() {
+          leagues = result;
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error loading leagues: $e')),
+      );
+      setState(() => _isLoading = false);
     }
-  } catch (e) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Error loading leagues: $e')),
-    );
-    setState(() => _isLoading = false);
   }
-}
-
 
   Future<void> _loadSelectedLeagues() async {
     final userId = _firestoreService.getCurrentUserId();
@@ -101,7 +100,7 @@ Future<void> _loadLeagues() async {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Leagues'),
+        title: Text('Leagues', style: TextStyle(color: primaryTextColor)),
         backgroundColor: appBarBackgroundColor,
       ),
       body: _isLoading
@@ -125,7 +124,11 @@ Future<void> _loadLeagues() async {
                   itemCount: leagues.length,
                   itemBuilder: (context, index) {
                     final league = leagues[index]['league'];
-                    final leagueId = league['id'].toString();
+                    final leagueId = league['id']
+                        .toString(); // Assuming league has an 'id' field
+                    final leagueName = league['name'] ?? 'Unknown League';
+                    final leagueImageUrl = league['logo'] ??
+                        ''; // Assuming league has a 'logo' field
                     final isSelected = selectedLeagueIds.contains(leagueId);
 
                     return Card(
@@ -134,16 +137,27 @@ Future<void> _loadLeagues() async {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: CheckboxListTile(
-                        title: Text(
-                          league['name'] ?? 'Unknown League',
-                          style: TextStyle(color: primaryTextColor),
+                      child: ListTile(
+                        leading: leagueImageUrl.isNotEmpty
+                            ? Image.network(
+                                leagueImageUrl,
+                                width: 50,
+                                height:
+                                    50, // Maintain consistent height and width for better alignment
+                                fit: BoxFit
+                                    .contain, // Ensure the image fits within the given dimensions
+                                errorBuilder: (context, error, stackTrace) =>
+                                    Icon(Icons.image_not_supported),
+                              )
+                            : Icon(Icons.image_not_supported, size: 50),
+                        title: Text(leagueName),
+                        trailing: Checkbox(
+                          activeColor: orangeTextColor,
+                          value: isSelected,
+                          onChanged: (bool? value) {
+                            _toggleLeagueSelection(leagueId, value ?? false);
+                          },
                         ),
-                        value: isSelected,
-                        activeColor: orangeTextColor,
-                        onChanged: (bool? value) {
-                          _toggleLeagueSelection(leagueId, value ?? false);
-                        },
                       ),
                     );
                   },

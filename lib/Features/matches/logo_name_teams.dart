@@ -9,9 +9,9 @@ logoNameTeams({required String logo, required String name}) {
         backgroundColor: Colors.transparent,
         child: Image.network(
           logo,
-          height: 35,
-          width: 30,
-          fit: BoxFit.cover,
+          height: 40,
+          width: 40,
+          fit: BoxFit.fill,
         ),
       ),
       const SizedBox(
