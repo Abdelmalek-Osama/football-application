@@ -49,7 +49,7 @@ class StandingviewScreen extends StatelessWidget {
                         ),
                         columnWidths: const {
                           0: FixedColumnWidth(50), // Position column
-                          1: FixedColumnWidth(400), // Team column
+                          1: FixedColumnWidth(200), // Team column
                           2: FixedColumnWidth(50), // MP
                           3: FixedColumnWidth(50), // W
                           4: FixedColumnWidth(50), // D

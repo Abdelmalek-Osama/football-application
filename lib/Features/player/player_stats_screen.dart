@@ -8,12 +8,14 @@ class PlayerStatsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (playerData['response'] == null || 
+    if (playerData['response'] == null ||
         playerData['response'].isEmpty ||
         playerData['results'] == 0) {
       return Scaffold(
         appBar: AppBar(
           title: Text('Player Statistics'),
+          centerTitle: true,
+          backgroundColor: Colors.blueGrey,
         ),
         body: Center(
           child: Column(
@@ -21,14 +23,14 @@ class PlayerStatsScreen extends StatelessWidget {
             children: [
               Icon(
                 Icons.error_outline,
-                size: 60,
-                color: Colors.red,
+                size: 80,
+                color: Colors.redAccent,
               ),
               SizedBox(height: 16),
               Text(
                 'No player data available',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -39,10 +41,23 @@ class PlayerStatsScreen extends StatelessWidget {
                   color: Colors.grey[600],
                 ),
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 20),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  backgroundColor: Colors.blueGrey,
+                ),
                 onPressed: () => Navigator.pop(context),
-                child: Text('Go Back'),
+                child: Text(
+                  'Go Back',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ],
           ),
@@ -56,6 +71,8 @@ class PlayerStatsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Player Statistics'),
+        centerTitle: true,
+        backgroundColor: Colors.blueGrey,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -64,11 +81,19 @@ class PlayerStatsScreen extends StatelessWidget {
             // Player Profile Header
             Container(
               padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.blueGrey, Colors.teal],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
               child: Row(
                 children: [
                   CircleAvatar(
                     radius: 40,
-                    
+                    backgroundImage: NetworkImage(player['photo']),
+                    backgroundColor: Colors.grey[300],
                   ),
                   SizedBox(width: 16),
                   Expanded(
@@ -80,18 +105,33 @@ class PlayerStatsScreen extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                         ),
-                        Text('Age: ${player['age']}'),
-                        Text('Nationality: ${player['nationality']}'),
-                        Text('Height: ${player['height']}'),
-                        Text('Weight: ${player['weight']}'),
+                        SizedBox(height: 4),
+                        Text(
+                          'Age: ${player['age']}',
+                          style: TextStyle(color: Colors.white70),
+                        ),
+                        Text(
+                          'Nationality: ${player['nationality']}',
+                          style: TextStyle(color: Colors.white70),
+                        ),
+                        Text(
+                          'Height: ${player['height']}',
+                          style: TextStyle(color: Colors.white70),
+                        ),
+                        Text(
+                          'Weight: ${player['weight']}',
+                          style: TextStyle(color: Colors.white70),
+                        ),
                       ],
                     ),
                   ),
                 ],
               ),
             ),
+            SizedBox(height: 16),
 
             // Statistics Tabs
             DefaultTabController(
@@ -99,6 +139,9 @@ class PlayerStatsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   TabBar(
+                    labelColor: Colors.blueGrey,
+                    unselectedLabelColor: Colors.grey,
+                    indicatorColor: Colors.teal,
                     tabs: [
                       Tab(text: 'Current Season'),
                       Tab(text: 'Career Stats'),
@@ -110,7 +153,6 @@ class PlayerStatsScreen extends StatelessWidget {
                       children: [
                         // Current Season Stats
                         _buildSeasonStats(statistics[0]),
-                        
                         // Career Stats
                         _buildCareerStats(statistics),
                       ],
@@ -135,30 +177,17 @@ class PlayerStatsScreen extends StatelessWidget {
             StatItem('Team', stats['team']['name']),
             StatItem('League', stats['league']['name']),
             StatItem('Season', stats['league']['season'].toString()),
-              StatItem('position', stats['games']['position'].toString()),
+            StatItem('Position', stats['games']['position'].toString()),
           ]),
-          
           _buildStatSection('Appearances', [
             StatItem('Games Played', stats['games']['appearences'].toString()),
             StatItem('Minutes Played', stats['games']['minutes'].toString()),
             StatItem('Lineups', stats['games']['lineups'].toString()),
-            
           ]),
-
           _buildStatSection('Goals & Assists', [
             StatItem('Goals', stats['goals']['total'].toString()),
             StatItem('Assists', stats['goals']['assists'].toString()),
             StatItem('Penalties Scored', stats['penalty']['scored'].toString()),
-          ]),
-
-          _buildStatSection('Shots', [
-            StatItem('Total Shots', stats['shots']['total'].toString()),
-            StatItem('Shots on Target', stats['shots']['on'].toString()),
-          ]),
-
-          _buildStatSection('Passes', [
-            StatItem('Total Passes', stats['passes']['total'].toString()),
-            StatItem('Key Passes', stats['passes']['key'].toString()),
           ]),
         ],
       ),
@@ -186,8 +215,6 @@ class PlayerStatsScreen extends StatelessWidget {
             StatItem('Total Assists', totalAssists.toString()),
             StatItem('Total Appearances', totalAppearances.toString()),
           ]),
-          
-          // Add more career statistics as needed
         ],
       ),
     );
@@ -196,6 +223,9 @@ class PlayerStatsScreen extends StatelessWidget {
   Widget _buildStatSection(String title, List<StatItem> items) {
     return Card(
       margin: EdgeInsets.only(bottom: 16),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
       child: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
@@ -206,6 +236,7 @@ class PlayerStatsScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
+                color: Colors.blueGrey,
               ),
             ),
             SizedBox(height: 8),
