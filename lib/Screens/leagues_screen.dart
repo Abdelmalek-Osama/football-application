@@ -25,20 +25,31 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
     _loadSelectedLeagues();
   }
 
-  Future<void> _loadLeagues() async {
-    try {
-      final result = await _apiService.getLeagues();
+Future<void> _loadLeagues() async {
+  try {
+    final result = await _apiService.getLeagues();
+    final userId = _firestoreService.getCurrentUserId();
+    if (userId != null) {
+      final savedLeagues = await _firestoreService.getUserLeagues(userId);
+      setState(() {
+        leagues = result;
+        selectedLeagueIds = savedLeagues; // Pre-select saved leagues
+        _isLoading = false;
+      });
+    } else {
       setState(() {
         leagues = result;
         _isLoading = false;
       });
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error loading leagues: $e')),
-      );
-      setState(() => _isLoading = false);
     }
+  } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Error loading leagues: $e')),
+    );
+    setState(() => _isLoading = false);
   }
+}
+
 
   Future<void> _loadSelectedLeagues() async {
     final userId = _firestoreService.getCurrentUserId();
