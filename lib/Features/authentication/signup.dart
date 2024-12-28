@@ -81,13 +81,11 @@ class _SignupScreenState extends State<SignupScreen> {
     }
 
     try {
-      // Attempt to create a new user
       await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      // Show success message
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content:
@@ -96,7 +94,6 @@ class _SignupScreenState extends State<SignupScreen> {
         ),
       );
 
-      // Navigate to the leagues page after successful signup
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const LeaguesScreen()),
@@ -139,123 +136,128 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Logo at the top (Replace with your actual logo path)
-            Image.asset(
-              'images/logo.png',  // Replace this with your logo path
-              width: 150,
-              height: 150,
-            ),
-            // Logo or App name can be placed here
-            const Text(
-              "Signup",
-              style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
-              ),
-            ),
-            const SizedBox(height: 40),
-
-            // Name Field
-            TextField(
-              controller: _nameController,
-              decoration: InputDecoration(
-                hintText: "Enter Name",
-                labelText: "Name",
-                labelStyle: const TextStyle(color: Colors.black),
-                errorText: _nameError,
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.blue, width: 2),
+      body: SafeArea(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: constraints.maxHeight,
                 ),
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 15),
-
-            // Email Field
-            TextField(
-              controller: _emailController,
-              decoration: InputDecoration(
-                hintText: "Enter Email",
-                labelText: "Email",
-                labelStyle: const TextStyle(color: Colors.black),
-                errorText: _emailError,
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.blue, width: 2),
-                ),
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 15),
-
-            // Password Field
-            TextField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                hintText: "Enter Password",
-                labelText: "Password",
-                labelStyle: const TextStyle(color: Colors.black),
-                errorText: _passwordError,
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.blue, width: 2),
-                ),
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 30),
-
-            // Signup Button
-            ElevatedButton(
-              onPressed: _signup,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 100, vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-              ),
-              child: const Text(
-                "Signup",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            const SizedBox(height: 15),
-
-            // Already have an account? Link to login
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  "Already have an account? ",
-                  style: TextStyle(color: Colors.black),
-                ),
-                InkWell(
-                  onTap: () => goToLogin(context),
-                  child: const Text(
-                    "Login",
-                    style: TextStyle(color: Colors.blue),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: IntrinsicHeight(
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          'images/logo.png', // Replace this with your logo path
+                          width: 150,
+                          height: 150,
+                        ),
+                        const Text(
+                          "Signup",
+                          style: TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          ),
+                        ),
+                        const SizedBox(height: 40),
+                        TextField(
+                          controller: _nameController,
+                          decoration: InputDecoration(
+                            hintText: "Enter Name",
+                            labelText: "Name",
+                            labelStyle: const TextStyle(color: Colors.black),
+                            errorText: _nameError,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: Colors.blue, width: 2),
+                            ),
+                            border: const OutlineInputBorder(),
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        TextField(
+                          controller: _emailController,
+                          decoration: InputDecoration(
+                            hintText: "Enter Email",
+                            labelText: "Email",
+                            labelStyle: const TextStyle(color: Colors.black),
+                            errorText: _emailError,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: Colors.blue, width: 2),
+                            ),
+                            border: const OutlineInputBorder(),
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        TextField(
+                          controller: _passwordController,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            hintText: "Enter Password",
+                            labelText: "Password",
+                            labelStyle: const TextStyle(color: Colors.black),
+                            errorText: _passwordError,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: Colors.blue, width: 2),
+                            ),
+                            border: const OutlineInputBorder(),
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                        ElevatedButton(
+                          onPressed: _signup,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 100, vertical: 15),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                          child: const Text(
+                            "Signup",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text(
+                              "Already have an account? ",
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            InkWell(
+                              onTap: () => goToLogin(context),
+                              child: const Text(
+                                "Login",
+                                style: TextStyle(color: Colors.blue),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                      ],
+                    ),
                   ),
                 ),
-              ],
-            ),
-          ],
+              ),
+            );
+          },
         ),
       ),
     );
   }
 
-  // Go to Login screen
   void goToLogin(BuildContext context) {
     Navigator.push(
       context,

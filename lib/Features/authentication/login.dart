@@ -32,77 +32,89 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // White background
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25),
-        child: Column(
-          children: [
-            const SizedBox(height: 60),
-            // Logo at the top (Replace with your actual logo path)
-            Image.asset(
-              'images/logo.png', // Replace this with your logo path
-              width: 150,
-              height: 150,
-            ),
-            const SizedBox(height: 40),
-            const Text(
-              "Login",
-              style: TextStyle(
-                fontSize: 36,
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
-              ),
-            ),
-            const SizedBox(height: 40),
-            CustomTextField(
-              controller: _emailController,
-              label: "Email",
-              hint: "Enter your email",
-              errorText: _emailError,
-            ),
-            const SizedBox(height: 20),
-            CustomTextField(
-              controller: _passwordController,
-              label: "Password",
-              hint: "Enter your password",
-              errorText: _passwordError,
-              isPassword: true,
-            ),
-            const SizedBox(height: 30),
-            // Modern Login button with gradient effect
-            CustomButton(
-              label: "Login",
-              onPressed: _login,
-              textColor: Colors.white,
-              backgroundColor: Colors.blueAccent,
-            ),
-            const SizedBox(height: 15),
-            // Sign in with Google button
-            CustomButton(
-              label: "Sign in with Google",
-              onPressed: _auth.loginWithGoogle,
-              textColor: Colors.black,
-              backgroundColor: Colors.white,
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("Don't have an account? "),
-                InkWell(
-                  onTap: () => _goToSignup(context),
-                  child: const Text(
-                    "Signup",
-                    style: TextStyle(
-                      color: Colors.blueAccent,
-                      fontWeight: FontWeight.bold,
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: constraints.maxHeight,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: IntrinsicHeight(
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 60),
+                        Image.asset(
+                          'images/logo.png', // Replace this with your logo path
+                          width: 150,
+                          height: 150,
+                        ),
+                        const SizedBox(height: 40),
+                        const Text(
+                          "Login",
+                          style: TextStyle(
+                            fontSize: 36,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          ),
+                        ),
+                        const SizedBox(height: 40),
+                        CustomTextField(
+                          controller: _emailController,
+                          label: "Email",
+                          hint: "Enter your email",
+                          errorText: _emailError,
+                        ),
+                        const SizedBox(height: 20),
+                        CustomTextField(
+                          controller: _passwordController,
+                          label: "Password",
+                          hint: "Enter your password",
+                          errorText: _passwordError,
+                          isPassword: true,
+                        ),
+                        const SizedBox(height: 30),
+                        CustomButton(
+                          label: "Login",
+                          onPressed: _login,
+                          textColor: Colors.white,
+                          backgroundColor: Colors.blueAccent,
+                        ),
+                        const SizedBox(height: 15),
+                        CustomButton(
+                          label: "Sign in with Google",
+                          onPressed: _auth.loginWithGoogle,
+                          textColor: Colors.black,
+                          backgroundColor: Colors.white,
+                        ),
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text("Don't have an account? "),
+                            InkWell(
+                              onTap: () => _goToSignup(context),
+                              child: const Text(
+                                "Signup",
+                                style: TextStyle(
+                                  color: Colors.blueAccent,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                      ],
                     ),
                   ),
-                )
-              ],
-            ),
-            const Spacer(),
-          ],
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
@@ -119,8 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => const BottomNavigation()),
-      (route) =>
-          false, // This removes all previous routes (including the login screen)
+      (route) => false,
     );
   }
 
@@ -128,13 +139,11 @@ class _LoginScreenState extends State<LoginScreen> {
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
 
-    // Reset error messages
     setState(() {
       _emailError = null;
       _passwordError = null;
     });
 
-    // Validate form fields
     if (email.isEmpty) {
       setState(() => _emailError = "Email is required.");
       return;
@@ -151,7 +160,6 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
     try {
-      // Attempt login
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
 
@@ -177,7 +185,6 @@ class _LoginScreenState extends State<LoginScreen> {
         }
       }
 
-      // Show error message in a snackbar
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(errorMessage)),
       );
