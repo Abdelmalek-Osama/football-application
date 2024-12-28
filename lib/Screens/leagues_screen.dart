@@ -1,6 +1,6 @@
 // lib/Screens/leagues_screen.dart
 import 'package:flutter/material.dart';
-import 'package:flutter_lab2/Custom-widgets/bottom_navigation.dart';
+import 'package:footballapp/Custom-widgets/bottom_navigation.dart';
 import '../constants.dart';
 import '../services/ApiService.dart';
 import '../services/firestore_service.dart';

@@ -1,10 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_lab2/Custom-widgets/customtext.dart';
-import 'package:flutter_lab2/Features/standings/repo/standing_repo.dart';
-import 'package:flutter_lab2/Features/standings/models/standingsmodel.dart';
-import 'package:flutter_lab2/Features/standings/widgets/tableheaders.dart';
-import 'package:flutter_lab2/Features/standings/widgets/tablerow.dart';
+import 'package:footballapp/Features/standings/repo/standing_repo.dart';
+import 'package:footballapp/Features/standings/models/standingsmodel.dart';
+import 'package:footballapp/Features/standings/widgets/tableheaders.dart';
+import 'package:footballapp/Features/standings/widgets/tablerow.dart';
 
 import '../../Custom-widgets/custom_app_bar.dart';
 import '../../Custom-widgets/custom_end_drawer.dart';

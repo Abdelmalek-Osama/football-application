@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_lab2/Features/standings/models/standingsmodel.dart';
+import 'package:footballapp/Features/standings/models/standingsmodel.dart';
 import 'package:http/http.dart' as http;
 
 class StandingRepo {

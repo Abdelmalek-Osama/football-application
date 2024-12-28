@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_lab2/Custom-widgets/customtext.dart';
-import 'package:flutter_lab2/constants.dart';
-import 'package:flutter_lab2/Features/news/newsmodel.dart';
-import 'package:flutter_lab2/Features/news/todaynews.dart';
+import 'package:footballapp/Custom-widgets/customtext.dart';
+import 'package:footballapp/constants.dart';
+import 'package:footballapp/Features/news/newsmodel.dart';
+import 'package:footballapp/Features/news/todaynews.dart';
 import 'package:intl/intl.dart';
 
 import '../../Custom-widgets/custom_app_bar.dart';

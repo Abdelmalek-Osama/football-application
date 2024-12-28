@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab2/Custom-widgets/customtext.dart';
-import 'package:flutter_lab2/Features/standings/models/standingsmodel.dart';
-import 'package:flutter_lab2/Features/standings/widgets/tablecell.dart';
+import 'package:footballapp/Custom-widgets/customtext.dart';
+import 'package:footballapp/Features/standings/models/standingsmodel.dart';
+import 'package:footballapp/Features/standings/widgets/tablecell.dart';
 
 import '../../../constants.dart';
 

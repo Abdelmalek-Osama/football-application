@@ -1,6 +1,6 @@
 {
-    "name": "flutter_lab2",
-    "short_name": "flutter_lab2",
+    "name": "footballapp",
+    "short_name": "footballapp",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

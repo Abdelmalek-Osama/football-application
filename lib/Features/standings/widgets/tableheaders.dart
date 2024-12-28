@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab2/Features/standings/widgets/tablecell.dart';
+import 'package:footballapp/Features/standings/widgets/tablecell.dart';
 
 TableRow createTableHeaders() {
   return TableRow(

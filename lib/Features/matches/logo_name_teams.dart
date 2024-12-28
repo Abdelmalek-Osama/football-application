@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab2/Custom-widgets/customtext.dart';
-import 'package:flutter_lab2/constants.dart';
+import 'package:footballapp/Custom-widgets/customtext.dart';
+import 'package:footballapp/constants.dart';
 
 logoNameTeams({required String logo, required String name}) {
   return Column(

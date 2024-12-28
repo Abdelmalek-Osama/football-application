@@ -1,4 +1,4 @@
-package com.example.flutter_lab2
+package com.example.footballapp
 
 import io.flutter.embedding.android.FlutterActivity
 

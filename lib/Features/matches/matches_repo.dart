@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:flutter_lab2/Features/matches/tomatches_model.dart';
+import 'package:footballapp/Features/matches/tomatches_model.dart';
 import 'package:http/http.dart' as http;
 
 class TodayMatchesRepo {

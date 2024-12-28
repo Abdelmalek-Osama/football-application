@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:flutter_lab2/Features/news/newsmodel.dart';
+import 'package:footballapp/Features/news/newsmodel.dart';
 import 'package:http/http.dart' as http;
 
 class Todaynews {

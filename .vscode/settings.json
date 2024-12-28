@@ -3,5 +3,5 @@
     "dart.hotReloadOnSave": "never",
     "dart.allowTestsOutsideTestFolder": true,
     "files.autoSave": "afterDelay",
-    "cmake.sourceDirectory": "E:/Mobile_Application/flutter_lab2/linux"
+    "cmake.sourceDirectory": "E:/Mobile_Application/footballapp/linux"
 }

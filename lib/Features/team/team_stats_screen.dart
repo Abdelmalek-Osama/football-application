@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab2/Features/team/team_players_screen.dart';
+import 'package:footballapp/Features/team/team_players_screen.dart';
 
 import '../../constants.dart';
 
@@ -39,7 +39,6 @@ class TeamStatsScreen extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
-
               child: Padding(
                 padding: EdgeInsets.all(16),
                 child: Row(

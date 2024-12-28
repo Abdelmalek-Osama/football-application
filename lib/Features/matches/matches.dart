@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab2/Custom-widgets/custom_end_drawer.dart';
-import 'package:flutter_lab2/Custom-widgets/customtext.dart';
-import 'package:flutter_lab2/Custom-widgets/side_bar.dart';
-import 'package:flutter_lab2/constants.dart';
-import 'package:flutter_lab2/Features/matches/matches_repo.dart';
-import 'package:flutter_lab2/Features/matches/tomatches_model.dart';
-import 'package:flutter_lab2/Features/matches/logo_name_league.dart';
-import 'package:flutter_lab2/Features/matches/logo_name_teams.dart';
-import 'package:flutter_lab2/services/firestore_service.dart';
+import 'package:footballapp/Custom-widgets/custom_end_drawer.dart';
+import 'package:footballapp/Custom-widgets/customtext.dart';
+import 'package:footballapp/Custom-widgets/side_bar.dart';
+import 'package:footballapp/constants.dart';
+import 'package:footballapp/Features/matches/matches_repo.dart';
+import 'package:footballapp/Features/matches/tomatches_model.dart';
+import 'package:footballapp/Features/matches/logo_name_league.dart';
+import 'package:footballapp/Features/matches/logo_name_teams.dart';
+import 'package:footballapp/services/firestore_service.dart';
 import 'package:intl/intl.dart';
 
 import '../../Custom-widgets/custom_app_bar.dart';
@@ -24,16 +24,15 @@ class TodayMatches extends StatefulWidget {
 class _TodayMatchesState extends State<TodayMatches> {
   final FirestoreService _firestoreService = FirestoreService();
 
-
   Future<List<NextFixturesModel>> fetchMatches() async {
     final userId = _firestoreService.getCurrentUserId();
     var leagues = await _firestoreService.getUserLeagues(userId!);
     List<NextFixturesModel> matchesList = [];
     for (int i = 0; i < leagues.length; i++) {
-      matchesList +=
-          await widget.todayMatchesRepo.getTodayMatches("last=5&league=${leagues[i]}");
-      matchesList +=
-          await widget.todayMatchesRepo.getTodayMatches("next=5&league=${leagues[i]}");
+      matchesList += await widget.todayMatchesRepo
+          .getTodayMatches("last=5&league=${leagues[i]}");
+      matchesList += await widget.todayMatchesRepo
+          .getTodayMatches("next=5&league=${leagues[i]}");
     }
     return matchesList;
   }

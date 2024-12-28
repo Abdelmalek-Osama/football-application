@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab2/Custom-widgets/bottom_navigation.dart';
+import 'package:footballapp/Custom-widgets/bottom_navigation.dart';
 import 'auth_service.dart';
 import 'signup.dart';
 import '../../Custom-widgets/button.dart';
@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 60),
             // Logo at the top (Replace with your actual logo path)
             Image.asset(
-              'images/logo.png',  // Replace this with your logo path
+              'images/logo.png', // Replace this with your logo path
               width: 150,
               height: 150,
             ),
@@ -115,13 +115,14 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-void _goToHome(BuildContext context) {
-  Navigator.pushAndRemoveUntil(
-    context,
-    MaterialPageRoute(builder: (context) => const BottomNavigation()),
-    (route) => false, // This removes all previous routes (including the login screen)
-  );
-}
+  void _goToHome(BuildContext context) {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => const BottomNavigation()),
+      (route) =>
+          false, // This removes all previous routes (including the login screen)
+    );
+  }
 
   Future<void> _login() async {
     String email = _emailController.text.trim();
