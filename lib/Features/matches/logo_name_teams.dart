@@ -9,8 +9,8 @@ logoNameTeams({required String logo, required String name}) {
         backgroundColor: Colors.transparent,
         child: Image.network(
           logo,
-          height: 40,
-          width: 40,
+          height: 50,
+          width: 50,
           fit: BoxFit.fill,
         ),
       ),

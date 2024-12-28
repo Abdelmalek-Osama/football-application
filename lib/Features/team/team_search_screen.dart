@@ -4,7 +4,6 @@ import '../../Custom-widgets/custom_end_drawer.dart';
 import '../../Custom-widgets/side_bar.dart';
 import '../../services/ApiService.dart';
 import 'team_stats_screen.dart';
-import 'team_players_screen.dart';
 
 class TeamSearchScreen extends StatefulWidget {
   const TeamSearchScreen({super.key});
@@ -104,7 +103,8 @@ class _TeamSearchScreenState extends State<TeamSearchScreen> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
                         minimumSize: Size(double.infinity, 50),
-                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                         foregroundColor: Colors.white,
                       ),
                       onPressed: _searchTeam,

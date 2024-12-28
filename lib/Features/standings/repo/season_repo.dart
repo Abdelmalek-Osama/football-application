@@ -14,11 +14,8 @@ class SeasonRepo {
 		'x-rapidapi-key': '649a4f6d50msh8311c933f6b48d9p144f84jsn7f9f5b5121df',
 		'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
 	});
-      if (kDebugMode) {
-        print(response.body);
-      }
-      List decodedResponse = jsonDecode(response.body)["response"];
-      return decodedResponse.map((e) => Seasons.fromJson(e)).toList();
+      Map<String, dynamic> decodedResponse = jsonDecode(response.body); 
+      return Seasons.fromJson(decodedResponse);
     } finally {
       client.close();
     }

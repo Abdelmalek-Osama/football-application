@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:footballapp/Custom-widgets/custom_app_bar.dart';
 import '../../services/firestore_service.dart';
 
 class FavoritesScreen extends StatelessWidget {
@@ -9,9 +10,7 @@ class FavoritesScreen extends StatelessWidget {
     final FirestoreService firestoreService = FirestoreService();
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Favorites'),
-      ),
+      appBar: CustomAppBar(title: 'Favourites'),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: firestoreService.getFavoritePlayers(),
         builder: (context, snapshot) {

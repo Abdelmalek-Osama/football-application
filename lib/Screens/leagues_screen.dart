@@ -1,6 +1,7 @@
 // lib/Screens/leagues_screen.dart
 import 'package:flutter/material.dart';
 import 'package:footballapp/Custom-widgets/bottom_navigation.dart';
+import 'package:footballapp/Custom-widgets/custom_app_bar.dart';
 import '../constants.dart';
 import '../services/ApiService.dart';
 import '../services/firestore_service.dart';
@@ -23,7 +24,6 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
   void initState() {
     super.initState();
     _loadLeagues();
-    _loadSelectedLeagues();
   }
 
   Future<void> _loadLeagues() async {
@@ -48,22 +48,6 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
         SnackBar(content: Text('Error loading leagues: $e')),
       );
       setState(() => _isLoading = false);
-    }
-  }
-
-  Future<void> _loadSelectedLeagues() async {
-    final userId = _firestoreService.getCurrentUserId();
-    if (userId != null) {
-      try {
-        final savedLeagues = await _firestoreService.getUserLeagues(userId);
-        setState(() {
-          selectedLeagueIds = savedLeagues;
-        });
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error loading selected leagues: $e')),
-        );
-      }
     }
   }
 
@@ -106,10 +90,9 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Leagues', style: TextStyle(color: primaryTextColor)),
-        backgroundColor: appBarBackgroundColor,
-      ),
+      appBar: 
+       CustomAppBar(title: 'Leagues')
+      ,
       body: _isLoading
           ? Center(
               child: CircularProgressIndicator(

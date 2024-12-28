@@ -1,5 +1,6 @@
 // In lib/Screens/search_favorites_screen.dart
 import 'package:flutter/material.dart';
+import 'package:footballapp/Custom-widgets/custom_app_bar.dart';
 import '../../services/firestore_service.dart';
 
 class SearchFavoritesScreen extends StatefulWidget {
@@ -39,7 +40,7 @@ class _SearchFavoritesScreenState extends State<SearchFavoritesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Search Favorites')),
+      appBar: CustomAppBar(title: 'Search Favourites'),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(

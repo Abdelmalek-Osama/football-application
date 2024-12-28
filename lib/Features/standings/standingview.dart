@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:footballapp/Features/standings/repo/standing_repo.dart';
 import 'package:footballapp/Features/standings/models/standingsmodel.dart';
@@ -12,18 +11,27 @@ import '../../constants.dart';
 
 class StandingviewScreen extends StatelessWidget {
   final StandingRepo standingRepo;
-  StandingviewScreen({super.key, required this.standingRepo});
+  final String leagueId;
+  final String season;
+  StandingviewScreen(
+      {super.key,
+      required this.standingRepo,
+      this.leagueId = '39',
+      this.season = '2024'});
 
   Future<League> fetchMatches() async {
-    return await standingRepo.getStandings();
+    return await standingRepo.getStandings(leagueId, season);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      endDrawer:  CustomEndDrawerAnimation(drawer: Sidebar()),
-      appBar: CustomAppBar(title: 'Standings'),
+      endDrawer: CustomEndDrawerAnimation(drawer: Sidebar()),
+      appBar: CustomAppBar(
+        title: 'Standings',
+        search: true,
+      ),
       body: FutureBuilder<League>(
         future: fetchMatches(),
         builder: (context, snapshot) {
@@ -44,11 +52,11 @@ class StandingviewScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10.0),
                       child: Table(
                         border: TableBorder.all(
-                          color:  primaryTextColor,
+                          color: primaryTextColor,
                         ),
                         columnWidths: const {
                           0: FixedColumnWidth(50), // Position column
-                          1: FixedColumnWidth(200), // Team column
+                          1: FixedColumnWidth(250), // Team column
                           2: FixedColumnWidth(50), // MP
                           3: FixedColumnWidth(50), // W
                           4: FixedColumnWidth(50), // D

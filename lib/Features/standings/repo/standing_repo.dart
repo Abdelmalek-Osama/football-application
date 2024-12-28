@@ -1,13 +1,12 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
 import 'package:footballapp/Features/standings/models/standingsmodel.dart';
 import 'package:http/http.dart' as http;
 
 class StandingRepo {
-  getStandings() async {
+  getStandings(String leagueid, String season) async {
     var client = http.Client();
     var url =
-        'https://api-football-v1.p.rapidapi.com/v3/standings?league=39&season=2024';
+        'https://api-football-v1.p.rapidapi.com/v3/standings?league=$leagueid&season=$season';
     // "?" +
     // Uri(queryParameters: params).query;
     try {
@@ -15,9 +14,6 @@ class StandingRepo {
         'x-rapidapi-key': '649a4f6d50msh8311c933f6b48d9p144f84jsn7f9f5b5121df',
         'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
       });
-      if (kDebugMode) {
-        print(response.body);
-      }
       Map<String, dynamic> decodedResponse =
           jsonDecode(response.body)["response"][0]["league"];
       League league = League.fromJson(decodedResponse);

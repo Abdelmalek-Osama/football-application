@@ -10,10 +10,10 @@ class Todaynews {
 
     try {
       var response = await client.get(Uri.parse(url), headers: {
-        'x-rapidapi-key': "649a4f6d50msh8311c933f6b48d9p144f84jsn7f9f5b5121df",
+        'x-rapidapi-key': "09f207794bmshc204a41601b62e4p146a60jsna9768e38c60d",
         'x-rapidapi-host': "allscores.p.rapidapi.com"
       });
-    // print(response.body);
+    // print("response news: ${response.body}");
       List decodedResponse = jsonDecode(response.body)["news"];
       return decodedResponse.map((e) => News.fromJson(e)).toList();
     } finally {
