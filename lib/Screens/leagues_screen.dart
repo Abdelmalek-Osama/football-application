@@ -1,5 +1,6 @@
 // lib/Screens/leagues_screen.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_lab2/Custom-widgets/bottom_navigation.dart';
 import '../constants.dart';
 import '../services/ApiService.dart';
 import '../services/firestore_service.dart';
@@ -83,6 +84,12 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
         await _firestoreService.saveUserLeagues(userId, selectedLeagueIds);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Leagues saved successfully!')),
+        );
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const BottomNavigation()),
+          (route) =>
+              false, // This removes all previous routes (including the login screen)
         );
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(

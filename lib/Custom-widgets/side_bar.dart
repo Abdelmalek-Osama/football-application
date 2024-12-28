@@ -90,9 +90,11 @@ class Sidebar extends StatelessWidget {
             ),
             onTap: () {
               signOutCurrentUser();
-              Navigator.push(
+              Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (context) => const LoginScreen()),
+                (route) =>
+                    false, // This removes all previous routes (including the login screen)
               );
             },
           ),

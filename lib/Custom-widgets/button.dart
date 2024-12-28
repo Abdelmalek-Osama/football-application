@@ -5,6 +5,7 @@ class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
   final double? width;
   final Color? textColor;
+  final Color? backgroundColor;
 
   const CustomButton({
     super.key,
@@ -12,6 +13,7 @@ class CustomButton extends StatelessWidget {
     required this.onPressed,
     this.width,
     this.textColor,
+    this.backgroundColor,
   });
 
   @override
@@ -21,7 +23,7 @@ class CustomButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: Theme.of(context).primaryColor,
+          backgroundColor: backgroundColor ?? Theme.of(context).primaryColor,
         ),
         child: Text(
           label,
